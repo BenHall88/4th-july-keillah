@@ -55,6 +55,7 @@
 
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-trail"></div>
     <div class="cursor-glow"></div>
     <div class="cursor-ring"></div>
     <div class="cursor-dot"></div>
@@ -273,10 +274,10 @@
         <div class="photostrip">
           <div class="photostrip-flash"></div>
           <div class="photostrip-photos">
-            <div class="photostrip-photo"><img data-src="/memories/memory20.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory21.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory22.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory23.jpg" alt="" loading="lazy"></div>
+            <div class="photostrip-photo"><img src="/memories/memory20.jpg" alt="" decoding="async"></div>
+            <div class="photostrip-photo"><img src="/memories/memory21.jpg" alt="" decoding="async"></div>
+            <div class="photostrip-photo"><img src="/memories/memory22.jpg" alt="" decoding="async"></div>
+            <div class="photostrip-photo"><img src="/memories/memory23.jpg" alt="" decoding="async"></div>
           </div>
         </div>
       </section>
@@ -334,7 +335,7 @@
       <section class="section section-widgets" id="widgets" data-section="widgets">
         <div class="widgets-weather-full">
           <div class="weather-hero glass-panel" data-glass>
-            <p class="weather-location" id="weather-location">Maryland</p>
+            <p class="weather-location" id="weather-location">Upper Marlboro, Maryland</p>
             <p class="weather-date">July 4 Forecast</p>
             <p class="weather-temp" id="weather-hero-temp">—°</p>
             <p class="weather-condition" id="weather-hero-condition">Loading…</p>
@@ -389,7 +390,7 @@
             <div class="ticket-row"><span class="ticket-label">Hosted by</span><span class="ticket-value">Ivan</span></div>
             <div class="ticket-row"><span class="ticket-label">Date</span><span class="ticket-value">July 4th, 2026</span></div>
             <div class="ticket-row"><span class="ticket-label">Includes</span><span class="ticket-value">Sunset · Food · Fireworks · You</span></div>
-            <div class="ticket-row"><span class="ticket-label">Status</span><span class="ticket-value ticket-status">Reserved <span class="glass-emoji">❤️</span></span></div>
+            <div class="ticket-row"><span class="ticket-label">Status</span><span class="ticket-value ticket-status">In Progress <span class="glass-emoji">❤️</span></span></div>
             <div class="ticket-qr" aria-hidden="true"><div class="ticket-qr-inner"></div></div>
             <div class="ticket-barcode" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -428,20 +429,24 @@
           <p class="envelope-hint" id="envelope-hint">Click the envelope to open</p>
         </div>
         <div class="envelope-scene" id="envelope-wrap">
-          <div class="envelope" id="envelope">
-            <div class="envelope-body"></div>
-            <div class="envelope-letter" id="envelope-letter">
-              <div class="envelope-letter-content">
-                <p>Keilah,</p>
-                <p>I've been thinking about the Fourth. Not in a weird way — I just keep picturing us getting food, finding a spot, and waiting for it to get dark.</p>
-                <p>I want to be the one you watch fireworks with this year. Hold your hand when the loud ones go off. Take pictures you'll probably delete later. Get food after and talk about nothing important.</p>
-                <p>I made this whole website because I didn't know how else to ask. So here it is, plain as I can say it.</p>
-                <p class="letter-signoff">Will you be my Lady Liberty this Fourth of July?</p>
-                <p class="letter-signature-cursive">Ivan</p>
-              </div>
+          <div class="envelope-wrapper">
+            <div class="envelope envelope-glass" id="envelope">
+              <div class="envelope-glow"></div>
+              <div class="envelope-body"></div>
+              <div class="envelope-flap"></div>
+              <div class="envelope-seal" id="envelope-seal"><span>I</span></div>
             </div>
-            <div class="envelope-flap"></div>
-            <div class="envelope-seal" id="envelope-seal"></div>
+          </div>
+          <div class="letter-paper glass-letter" id="envelope-letter">
+            <div class="letter-paper-fold"></div>
+            <div class="envelope-letter-content">
+              <p>Keilah,</p>
+              <p>I've been thinking about the Fourth. Not in a weird way — I just keep picturing us getting food, finding a spot, and waiting for it to get dark.</p>
+              <p>I want to be the one you watch fireworks with this year. Hold your hand when the loud ones go off. Take pictures you'll probably delete later. Get food after and talk about nothing important.</p>
+              <p>I made this whole website because I didn't know how else to ask. So here it is, plain as I can say it.</p>
+              <p class="letter-signoff">Will you be my Lady Liberty this Fourth of July?</p>
+              <p class="letter-signature-cursive">Ivan</p>
+            </div>
           </div>
         </div>
       </section>

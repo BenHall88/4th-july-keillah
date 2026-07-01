@@ -52,6 +52,7 @@ export default defineConfig({
   server: { open: true, port: 3000 },
   plugins: [
     staticDirPlugin('memories', 'memories'),
+    staticDirPlugin('fav-things', 'fav things'),
     staticDirPlugin('music', 'music'),
     staticDirPlugin('covers', 'song cover'),
   ],

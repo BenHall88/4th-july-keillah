@@ -10,7 +10,7 @@
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/css/variables.css">
@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="/css/particles.css">
   <link rel="stylesheet" href="/css/fireworks.css">
   <link rel="stylesheet" href="/css/journey.css">
+  <link rel="stylesheet" href="/css/journey-extras.css">
   <link rel="stylesheet" href="/css/responsive.css">
 </head>
 <body>
@@ -58,8 +59,8 @@
     <div class="cursor-ring"></div>
     <div class="cursor-dot"></div>
   </div>
-  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true"></div>
-  <canvas id="cursor-particles" aria-hidden="true"></canvas>
+  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true" style="display:none"></div>
+  <canvas id="cursor-particles" aria-hidden="true" style="display:none"></canvas>
 
   <!-- Background Layers -->
   <div class="background-layers" aria-hidden="true">
@@ -163,41 +164,18 @@
         </div>
       </section>
 
-      <!-- Digital Invitation -->
-      <section class="section section-invitation" id="invitation" data-section="invitation">
-        <div class="invitation-wrap">
-          <div class="invitation-seal" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2L14 8H20L15 12L17 18L12 14L7 18L9 12L4 8H10Z"/></svg>
-          </div>
-          <div class="invitation-paper">
-            <h2 class="invitation-title">You're Invited</h2>
-            <div class="invitation-body">
-              <p>Dear Keilah,</p>
-              <p style="margin-top:1rem;">I'd love for you to spend the Fourth of July with me. No pressure, no big speech — just a really good day together.</p>
-              <p style="margin-top:1rem;"><em>— Ivan</em></p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Moodboard (horizontal scroll) -->
-      <section class="section section-moodboard" id="moodboard" data-section="moodboard">
-        <div class="moodboard-header">
-          <p class="journey-label">Visual mood</p>
-          <h2 class="journey-heading">Fourth of July</h2>
-        </div>
-        <div class="moodboard-pin">
-          <div class="moodboard-track">
-            <div class="moodboard-item" style="--tilt:-2deg"><div class="moodboard-card"><div class="moodboard-visual mood-fireworks"></div><span class="moodboard-label">Fireworks</span></div></div>
-            <div class="moodboard-item" style="--tilt:1deg"><div class="moodboard-card"><div class="moodboard-visual mood-sparklers"></div><span class="moodboard-label">Sparklers</span></div></div>
-            <div class="moodboard-item moodboard-item--wide" style="--tilt:-1deg"><div class="moodboard-card"><div class="moodboard-visual mood-sunset"></div><span class="moodboard-label">Sunset skies</span></div></div>
-            <div class="moodboard-item" style="--tilt:2deg"><div class="moodboard-card"><div class="moodboard-visual mood-flags"></div><span class="moodboard-label">American flags</span></div></div>
-            <div class="moodboard-item" style="--tilt:-1.5deg"><div class="moodboard-card"><div class="moodboard-visual mood-picnic"></div><span class="moodboard-label">Picnic blankets</span></div></div>
-            <div class="moodboard-item" style="--tilt:1.5deg"><div class="moodboard-card"><div class="moodboard-visual mood-icecream"></div><span class="moodboard-label">Ice cream</span></div></div>
-            <div class="moodboard-item" style="--tilt:-1deg"><div class="moodboard-card"><div class="moodboard-visual mood-lemonade"></div><span class="moodboard-label">Lemonade</span></div></div>
-            <div class="moodboard-item moodboard-item--wide" style="--tilt:1deg"><div class="moodboard-card"><div class="moodboard-visual mood-bbq"></div><span class="moodboard-label">Barbecue</span></div></div>
-            <div class="moodboard-item" style="--tilt:-2deg"><div class="moodboard-card"><div class="moodboard-visual mood-citylights"></div><span class="moodboard-label">City lights</span></div></div>
-            <div class="moodboard-item" style="--tilt:1deg"><div class="moodboard-card"><div class="moodboard-visual mood-summernight"></div><span class="moodboard-label">Summer nights</span></div></div>
+      <!-- Sparkler Sky (replaces moodboard) -->
+      <section class="section section-sparkler" id="sparkler" data-section="sparkler">
+        <div class="section-inner sparkler-inner">
+          <p class="journey-label">Interactive</p>
+          <h2 class="journey-heading">Light up the sky</h2>
+          <p class="journey-sub">Move your cursor — leave a trail of sparklers before the real fireworks.</p>
+          <canvas id="sparkler-canvas" class="sparkler-canvas"></canvas>
+          <div class="sparkler-wishes">
+            <div class="sparkler-wish glass-panel" data-glass><span class="glass-emoji">✨</span> A perfect sunset</div>
+            <div class="sparkler-wish glass-panel" data-glass><span class="glass-emoji">🎆</span> Fireworks together</div>
+            <div class="sparkler-wish glass-panel" data-glass><span class="glass-emoji">🌽</span> Good food</div>
+            <div class="sparkler-wish glass-panel" data-glass><span class="glass-emoji">📸</span> Too many pictures</div>
           </div>
         </div>
       </section>
@@ -208,58 +186,38 @@
           <p class="journey-label">All about you</p>
           <h2 class="journey-heading">Favorite Things</h2>
         </div>
-        <div class="favorites-grid">
-          <div class="fav-tile glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 2h8l1 7H7L8 2z"/><path d="M6 9h12v2a6 6 0 01-12 0V9z"/><line x1="12" y1="17" x2="12" y2="22"/></svg>
-            <span class="fav-label">Favorite Drink</span>
-            <span class="fav-value">Mountain Dew</span>
-            <span class="fav-caption">Fuel for great conversations.</span>
-          </div>
-          <div class="fav-tile glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>
-            <span class="fav-label">Favorite Color</span>
-            <span class="fav-value">Rose Gold</span>
-            <span class="fav-caption">Looks good on everything.</span>
-          </div>
-          <div class="fav-tile fav-tile--wide glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 4 8 4 13a8 8 0 0016 0c0-5-4-7-8-11z"/></svg>
-            <span class="fav-label">Favorite Foods</span>
-            <span class="fav-value">Pizza · Ribs · Cream Corn</span>
-            <span class="fav-caption">Honestly? Perfect combo.</span>
-          </div>
-          <div class="fav-tile glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 20V10"/><path d="M8 14c0-3 2-6 4-8 2 2 4 5 4 8"/><path d="M4 20h16"/></svg>
-            <span class="fav-label">Favorite Flowers</span>
-            <span class="fav-value">Tulips</span>
-            <span class="fav-caption">Always a good choice.</span>
-          </div>
-          <div class="fav-tile fav-tile--wide glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V6a5 5 0 0110 0v2"/></svg>
-            <span class="fav-label">Favorite Snacks</span>
-            <span class="fav-value">Sour Patch · Gummy Bears · Swedish Fish</span>
-            <span class="fav-caption">The essentials.</span>
-          </div>
-          <div class="fav-tile glass-panel" data-glass>
-            <svg class="fav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
-            <span class="fav-label">Favorite Place</span>
-            <span class="fav-value">Church</span>
-            <span class="fav-caption">The place that means the most.</span>
-          </div>
-        </div>
+        <div class="favorites-grid" id="favorites-grid"></div>
       </section>
 
-      <!-- Fun Facts -->
-      <section class="section section-facts" id="facts" data-section="facts">
-        <div class="facts-split">
-          <div class="facts-visual">Keilah</div>
-          <div>
-            <p class="journey-label">Fun facts</p>
-            <h2 class="journey-heading" style="margin-bottom:1.5rem;">About you</h2>
-            <div class="facts-cards">
-              <div class="fact-card glass-panel" data-glass><p class="fact-label">Favorite Season</p><p class="fact-value">Summer</p></div>
-              <div class="fact-card glass-panel" data-glass><p class="fact-label">Favorite Holiday</p><p class="fact-value">Fourth of July</p></div>
-              <div class="fact-card glass-panel" data-glass><p class="fact-label">Favorite Vibe</p><p class="fact-value">Sunsets and fireworks</p></div>
-              <div class="fact-card glass-panel" data-glass><p class="fact-label">Dream Evening</p><p class="fact-value">Food, pictures, fireworks, and laughter</p></div>
+      <!-- Why the Fourth -->
+      <section class="section section-why" id="why-fourth" data-section="why-fourth">
+        <div class="section-inner" style="text-align:center;">
+          <p class="journey-label">Honestly</p>
+          <h2 class="journey-heading">Why the Fourth with you</h2>
+        </div>
+        <div class="why-cards">
+          <div class="why-card glass-panel" data-glass>
+            <div class="why-card-inner">
+              <div class="why-front"><span class="glass-emoji">🌅</span><p>Sunset first</p></div>
+              <div class="why-back"><p>I like watching the sky change when you're next to me. July 4th sunsets hit different.</p></div>
+            </div>
+          </div>
+          <div class="why-card glass-panel" data-glass>
+            <div class="why-card-inner">
+              <div class="why-front"><span class="glass-emoji">🎆</span><p>Fireworks after</p></div>
+              <div class="why-back"><p>It's not really about the show. It's about looking over and knowing you're watching it too.</p></div>
+            </div>
+          </div>
+          <div class="why-card glass-panel" data-glass>
+            <div class="why-card-inner">
+              <div class="why-front"><span class="glass-emoji">🍕</span><p>Food always</p></div>
+              <div class="why-back"><p>Pizza, ribs, whatever — if we're eating together I'm already having a good day.</p></div>
+            </div>
+          </div>
+          <div class="why-card glass-panel" data-glass>
+            <div class="why-card-inner">
+              <div class="why-front"><span class="glass-emoji">😂</span><p>The laughing</p></div>
+              <div class="why-back"><p>You laugh at stuff I say like it's actually funny. That's my favorite part of any day.</p></div>
             </div>
           </div>
         </div>
@@ -277,7 +235,6 @@
           <div class="timeline-step"><div class="timeline-dot"></div><p class="timeline-time">Golden hour</p><h3 class="timeline-title">Take lots of pictures</h3><p class="timeline-desc">You'll pretend you don't want to. You'll still smile.</p></div>
           <div class="timeline-step"><div class="timeline-dot"></div><p class="timeline-time">Sunset</p><h3 class="timeline-title">Watch the sky change</h3><p class="timeline-desc">Sit somewhere and just look up for a while.</p></div>
           <div class="timeline-step"><div class="timeline-dot"></div><p class="timeline-time">Night</p><h3 class="timeline-title">Watch fireworks</h3><p class="timeline-desc">Hold hands. Laugh at the loud ones.</p></div>
-          <div class="timeline-step"><div class="timeline-dot"></div><p class="timeline-time">After</p><h3 class="timeline-title">Late night drive</h3><p class="timeline-desc">Windows down, music low, nowhere special.</p></div>
           <div class="timeline-step"><div class="timeline-dot"></div><p class="timeline-time">End of night</p><h3 class="timeline-title">Go home smiling</h3><p class="timeline-desc">Tired, happy, already thinking about next time.</p></div>
         </div>
       </section>
@@ -289,16 +246,16 @@
           <h2 class="journey-heading">Things We Should Do</h2>
         </div>
         <div class="activities-grid">
-          <div class="activity-tile glass-panel" data-glass>Mini golf</div>
-          <div class="activity-tile glass-panel" data-glass>Bowling</div>
+          <div class="activity-tile glass-panel" data-glass>Go on a mission trip together</div>
+          <div class="activity-tile glass-panel" data-glass>Painting</div>
           <div class="activity-tile glass-panel" data-glass>Arcade</div>
-          <div class="activity-tile glass-panel" data-glass>Ice cream</div>
+          <div class="activity-tile glass-panel" data-glass>Go to an escape room</div>
           <div class="activity-tile glass-panel" data-glass>Sunset walk</div>
-          <div class="activity-tile glass-panel" data-glass>Drive around</div>
+          <div class="activity-tile glass-panel" data-glass>Go to a drive-in theater</div>
           <div class="activity-tile glass-panel" data-glass>Watch fireworks</div>
-          <div class="activity-tile glass-panel" data-glass>Take pictures</div>
+          <div class="activity-tile glass-panel" data-glass>Work out together</div>
           <div class="activity-tile glass-panel" data-glass>Try new food</div>
-          <div class="activity-tile glass-panel" data-glass>Late night dessert</div>
+          <div class="activity-tile glass-panel" data-glass>Cook together</div>
         </div>
       </section>
 
@@ -308,14 +265,7 @@
           <p class="journey-label">Moments</p>
           <h2 class="journey-heading">Photo Gallery</h2>
         </div>
-        <div class="gallery-grid">
-          <div class="gallery-frame" style="--rot:-3deg"><div class="gallery-photo"><img data-src="/memories/memory1.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">Us</p></div>
-          <div class="gallery-frame" style="--rot:2deg"><div class="gallery-photo"><img data-src="/memories/memory2.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">Good times</p></div>
-          <div class="gallery-frame" style="--rot:-1deg"><div class="gallery-photo"><img data-src="/memories/memory3.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">Smiles</p></div>
-          <div class="gallery-frame" style="--rot:3deg"><div class="gallery-photo"><img data-src="/memories/memory4.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">Together</p></div>
-          <div class="gallery-frame" style="--rot:-2deg"><div class="gallery-photo"><img data-src="/memories/memory5.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">More to come</p></div>
-          <div class="gallery-frame" style="--rot:1deg"><div class="gallery-photo"><img data-src="/memories/memory6.jpg" alt="Memory" loading="lazy"></div><p class="gallery-caption">Always</p></div>
-        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
       </section>
 
       <!-- Photo Booth Strip -->
@@ -323,10 +273,10 @@
         <div class="photostrip">
           <div class="photostrip-flash"></div>
           <div class="photostrip-photos">
-            <div class="photostrip-photo"><img data-src="/memories/memory1.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory3.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory5.jpg" alt="" loading="lazy"></div>
-            <div class="photostrip-photo"><img data-src="/memories/memory6.jpg" alt="" loading="lazy"></div>
+            <div class="photostrip-photo"><img data-src="/memories/memory20.jpg" alt="" loading="lazy"></div>
+            <div class="photostrip-photo"><img data-src="/memories/memory21.jpg" alt="" loading="lazy"></div>
+            <div class="photostrip-photo"><img data-src="/memories/memory22.jpg" alt="" loading="lazy"></div>
+            <div class="photostrip-photo"><img data-src="/memories/memory23.jpg" alt="" loading="lazy"></div>
           </div>
         </div>
       </section>
@@ -337,86 +287,71 @@
           <p class="journey-label">Us</p>
           <h2 class="journey-heading">Memory Wall</h2>
         </div>
-        <div class="memory-wall-canvas">
-          <div class="memory-item" style="top:5%;left:8%;--mem-rot:-6deg" data-depth="1.2">
-            <div class="memory-polaroid"><img data-src="/memories/memory1.jpg" alt="Memory" loading="lazy"><p class="memory-note">my favorite</p></div>
-          </div>
-          <div class="memory-item" style="top:15%;right:12%;--mem-rot:4deg" data-depth="0.8">
-            <div class="memory-sticky">that smile gets me every time</div>
-          </div>
-          <div class="memory-item" style="top:35%;left:20%;--mem-rot:3deg" data-depth="1.5">
-            <div class="memory-polaroid"><img data-src="/memories/memory2.jpg" alt="Memory" loading="lazy"><p class="memory-note">us</p></div>
-          </div>
-          <div class="memory-item" style="top:10%;left:45%;--mem-rot:-2deg" data-depth="1">
-            <div class="memory-sticky">more adventures soon</div>
-          </div>
-          <div class="memory-item" style="top:50%;right:8%;--mem-rot:-5deg" data-depth="1.3">
-            <div class="memory-polaroid"><img data-src="/memories/memory3.jpg" alt="Memory" loading="lazy"><p class="memory-note">always laughing</p></div>
-          </div>
-          <div class="memory-item" style="top:60%;left:5%;--mem-rot:5deg" data-depth="0.9">
-            <div class="memory-polaroid"><img data-src="/memories/memory4.jpg" alt="Memory" loading="lazy"><p class="memory-note">together</p></div>
-          </div>
-          <div class="memory-item" style="top:25%;right:30%;--mem-rot:-3deg" data-depth="1.1">
-            <div class="memory-polaroid"><img data-src="/memories/memory5.jpg" alt="Memory" loading="lazy"><p class="memory-note">this one</p></div>
-          </div>
-          <div class="memory-item" style="top:70%;left:35%;--mem-rot:2deg" data-depth="1.4">
-            <div class="memory-polaroid"><img data-src="/memories/memory6.jpg" alt="Memory" loading="lazy"><p class="memory-note">can't wait for more</p></div>
-          </div>
-          <div class="memory-item" style="top:75%;right:25%;--mem-rot:-4deg" data-depth="0.7">
-            <div class="memory-sticky">you make everything better</div>
-          </div>
-        </div>
+        <div class="memory-wall-canvas" id="memory-wall-canvas"></div>
       </section>
 
       <!-- Playlist -->
       <section class="section section-playlist" id="playlist" data-section="playlist">
         <div class="playlist-split">
-          <div>
+          <div class="playlist-visual-col">
             <div class="playlist-vinyl-wrap">
-              <div class="playlist-vinyl"><div class="playlist-vinyl-label">July 4th</div></div>
+              <div class="playlist-vinyl" id="playlist-vinyl">
+                <div class="playlist-vinyl-label" id="playlist-vinyl-label">July 4</div>
+              </div>
             </div>
-            <div class="playlist-visualizer">
+            <div class="playlist-visualizer" id="playlist-visualizer">
               <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
               <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+            </div>
+            <div class="player-now glass-panel" data-glass>
+              <p class="player-now-label">Now playing</p>
+              <p class="player-now-title" id="player-now-title">—</p>
+              <p class="player-now-artist" id="player-now-artist">—</p>
+            </div>
+            <div class="player-controls glass-panel" data-glass>
+              <button class="player-btn glass-btn" id="btn-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+              <button class="player-btn glass-btn player-btn--main" id="btn-play" aria-label="Play"><svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg></button>
+              <button class="player-btn glass-btn" id="btn-next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+              <button class="player-btn glass-btn" id="btn-repeat" aria-label="Repeat"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg></button>
+            </div>
+            <div class="player-progress glass-panel" data-glass id="player-progress-bar">
+              <div class="player-progress-fill" id="player-progress-fill"></div>
+            </div>
+            <div class="player-times">
+              <span id="player-time-current">0:00</span>
+              <span id="player-time-total">0:00</span>
             </div>
           </div>
           <div class="playlist-ui glass-panel" data-glass>
             <p class="journey-label">Soundtrack</p>
             <h2 class="journey-heading" style="font-size:1.75rem;">Our Fourth of July Playlist</h2>
-            <div class="playlist-tracks">
-              <div class="playlist-track"><span class="track-num">01</span><div class="track-info"><p class="track-title">Song Title — Add Yours</p><p class="track-artist">Artist</p></div><span class="track-duration">3:42</span></div>
-              <div class="playlist-track"><span class="track-num">02</span><div class="track-info"><p class="track-title">Song Title — Add Yours</p><p class="track-artist">Artist</p></div><span class="track-duration">4:15</span></div>
-              <div class="playlist-track"><span class="track-num">03</span><div class="track-info"><p class="track-title">Song Title — Add Yours</p><p class="track-artist">Artist</p></div><span class="track-duration">3:28</span></div>
-              <div class="playlist-track"><span class="track-num">04</span><div class="track-info"><p class="track-title">Song Title — Add Yours</p><p class="track-artist">Artist</p></div><span class="track-duration">3:55</span></div>
-              <div class="playlist-track"><span class="track-num">05</span><div class="track-info"><p class="track-title">Song Title — Add Yours</p><p class="track-artist">Artist</p></div><span class="track-duration">4:02</span></div>
-            </div>
+            <div class="playlist-tracks" id="playlist-tracks"></div>
           </div>
         </div>
       </section>
 
       <!-- Weather + Countdown -->
       <section class="section section-widgets" id="widgets" data-section="widgets">
-        <div class="widgets-split">
-          <div class="weather-widget glass-panel" data-glass style="position:relative;">
-            <div class="weather-cloud-icon section-fx-pause"></div>
-            <div class="weather-sun section-fx-pause"></div>
-            <p class="weather-date">July 4</p>
-            <p class="weather-temp">82°</p>
-            <p class="weather-condition">Sunny</p>
-            <div class="weather-details">
-              <p class="weather-detail">0% Chance of a Boring Day</p>
-              <p class="weather-detail">Light breeze</p>
-              <p class="weather-detail">Perfect Firework Weather</p>
-            </div>
+        <div class="widgets-weather-full">
+          <div class="weather-hero glass-panel" data-glass>
+            <p class="weather-location" id="weather-location">Maryland</p>
+            <p class="weather-date">July 4 Forecast</p>
+            <p class="weather-temp" id="weather-hero-temp">—°</p>
+            <p class="weather-condition" id="weather-hero-condition">Loading…</p>
+            <div class="weather-details" id="weather-hero-detail"></div>
           </div>
-          <div class="countdown-widget glass-panel" data-glass>
-            <p class="countdown-label">Countdown to the Fourth</p>
-            <div class="countdown-digits">
-              <div class="countdown-unit"><span class="countdown-num" id="cd-days">00</span><span class="countdown-unit-label">Days</span></div>
-              <div class="countdown-unit"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-unit-label">Hours</span></div>
-              <div class="countdown-unit"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-unit-label">Min</span></div>
-              <div class="countdown-unit"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-unit-label">Sec</span></div>
-            </div>
+          <div class="weather-week-wrap">
+            <p class="journey-label">This week</p>
+            <div class="weather-week" id="weather-week"></div>
+          </div>
+        </div>
+        <div class="countdown-widget glass-panel" data-glass style="max-width:560px;margin:2rem auto 0;">
+          <p class="countdown-label">Countdown to the Fourth</p>
+          <div class="countdown-digits">
+            <div class="countdown-unit"><span class="countdown-num" id="cd-days">00</span><span class="countdown-unit-label">Days</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-unit-label">Hours</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-unit-label">Min</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-unit-label">Sec</span></div>
           </div>
         </div>
       </section>
@@ -439,17 +374,27 @@
 
       <!-- VIP Ticket -->
       <section class="section section-ticket" id="ticket" data-section="ticket">
-        <div class="vip-ticket glass-panel" data-glass>
-          <div class="ticket-notch ticket-notch--left"></div>
-          <div class="ticket-notch ticket-notch--right"></div>
-          <p class="ticket-foil">VIP Admission</p>
-          <h2 class="ticket-title">Fourth of July</h2>
-          <div class="ticket-row"><span class="ticket-label">Guest</span><span class="ticket-value">Keilah</span></div>
-          <div class="ticket-row"><span class="ticket-label">Hosted by</span><span class="ticket-value">Ivan</span></div>
-          <div class="ticket-row"><span class="ticket-label">Date</span><span class="ticket-value">July 4th</span></div>
-          <div class="ticket-row"><span class="ticket-label">Status</span><span class="ticket-value">Reserved</span></div>
-          <div class="ticket-barcode" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <div class="ticket-scene">
+          <div class="ticket-particles" aria-hidden="true"></div>
+          <div class="vip-ticket glass-panel" id="vip-ticket" data-glass>
+            <div class="ticket-hologram"></div>
+            <div class="ticket-shine"></div>
+            <div class="ticket-notch ticket-notch--left"></div>
+            <div class="ticket-notch ticket-notch--right"></div>
+            <div class="ticket-perforation"></div>
+            <p class="ticket-foil">✦ VIP Admission ✦</p>
+            <h2 class="ticket-title">Fourth of July</h2>
+            <p class="ticket-subtitle">Exclusive access — one night only</p>
+            <div class="ticket-row"><span class="ticket-label">Guest</span><span class="ticket-value">Keilah</span></div>
+            <div class="ticket-row"><span class="ticket-label">Hosted by</span><span class="ticket-value">Ivan</span></div>
+            <div class="ticket-row"><span class="ticket-label">Date</span><span class="ticket-value">July 4th, 2026</span></div>
+            <div class="ticket-row"><span class="ticket-label">Includes</span><span class="ticket-value">Sunset · Food · Fireworks · You</span></div>
+            <div class="ticket-row"><span class="ticket-label">Status</span><span class="ticket-value ticket-status">Reserved <span class="glass-emoji">❤️</span></span></div>
+            <div class="ticket-qr" aria-hidden="true"><div class="ticket-qr-inner"></div></div>
+            <div class="ticket-barcode" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p class="ticket-footer">Non-transferable · Best enjoyed together</p>
           </div>
         </div>
       </section>
@@ -459,36 +404,44 @@
         <div class="quotes-wall">
           <div class="quote-block quote-block--large glass-panel" data-glass>
             <span class="quote-mark">"</span>
-            <p class="quote-text">The best days aren't the fancy ones. They're the ones where you're with someone who makes ordinary things feel worth remembering.</p>
+            <p class="quote-text">Summer afternoon — summer afternoon; to me those have always been the two most beautiful words in the English language.</p>
+            <p class="quote-author">— Henry James</p>
+            <p class="quote-context">That's basically what I'm asking for on the Fourth. Not anything complicated. Just a summer afternoon with you that turns into a summer night.</p>
           </div>
           <div class="quote-block glass-panel" data-glass>
-            <p class="quote-text">"I just want more days like the ones we've already had."</p>
+            <p class="quote-text">"The best thing to hold onto in life is each other."</p>
+            <p class="quote-author">— Audrey Hepburn</p>
+            <p class="quote-context">Especially when we're watching fireworks and I look over and you're already looking back.</p>
           </div>
           <div class="quote-block glass-panel" data-glass>
-            <p class="quote-text">"Fireworks are cool. But watching them with you is the whole point."</p>
+            <p class="quote-text">"We didn't realize we were making memories. We just knew we were having fun."</p>
+            <p class="quote-author">— Winnie the Pooh</p>
+            <p class="quote-context">That's kind of what I want the Fourth to be. Just us having fun — and then realizing later it meant something.</p>
           </div>
         </div>
       </section>
 
-      <!-- Letter -->
-      <section class="section section-letter" id="letter" data-section="letter">
-        <div class="section-inner">
+      <!-- Letter — 3D Envelope -->
+      <section class="section section-envelope" id="letter" data-section="letter">
+        <div class="section-inner" style="text-align:center;">
           <h2 class="section-heading" id="letter-heading">A note for you</h2>
-          <div class="letter-container">
-            <div class="glass-panel letter-glass" data-glass>
-              <div class="glass-edge"></div>
-              <div class="glass-refraction"></div>
-              <div class="glass-highlight"></div>
-              <div class="glass-content">
-                <div class="letter-text" id="letter-text">
-                  <p>Hey — I've been thinking about the Fourth a lot lately. Not the fireworks or the food (okay, maybe a little the food), but mostly just... spending it with you.</p>
-                  <p>I want us to find a good spot, hold hands while the sky lights up, laugh at the loud ones, take way too many pictures, grab something to eat after, and just sit there watching the sunset until it gets dark enough for everything to start.</p>
-                  <p>I don't need anything fancy. I just want to make memories with you. The kind we'll look back on and smile about.</p>
-                  <p>That's really all this is about. <span class="emphasis">You and me, on the Fourth.</span></p>
-                </div>
-                <p class="letter-signature" id="letter-signature">— yours</p>
+          <p class="envelope-hint" id="envelope-hint">Click the envelope to open</p>
+        </div>
+        <div class="envelope-scene" id="envelope-wrap">
+          <div class="envelope" id="envelope">
+            <div class="envelope-body"></div>
+            <div class="envelope-letter" id="envelope-letter">
+              <div class="envelope-letter-content">
+                <p>Keilah,</p>
+                <p>I've been thinking about the Fourth. Not in a weird way — I just keep picturing us getting food, finding a spot, and waiting for it to get dark.</p>
+                <p>I want to be the one you watch fireworks with this year. Hold your hand when the loud ones go off. Take pictures you'll probably delete later. Get food after and talk about nothing important.</p>
+                <p>I made this whole website because I didn't know how else to ask. So here it is, plain as I can say it.</p>
+                <p class="letter-signoff">Will you be my Lady Liberty this Fourth of July?</p>
+                <p class="letter-signature-cursive">Ivan</p>
               </div>
             </div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal" id="envelope-seal"></div>
           </div>
         </div>
       </section>
@@ -513,13 +466,20 @@
             <p class="cta-question" id="cta-question">So what do you say?</p>
             <button class="btn-yes" id="btn-yes" data-magnetic aria-label="Yes">
               <span class="btn-glow"></span>
-              <span class="btn-text">Yes ❤️</span>
+              <span class="btn-text">Yes <span class="glass-emoji">❤️</span></span>
             </button>
           </div>
         </div>
       </section>
 
     </main>
+  </div>
+
+  <!-- Music player -->
+  <audio id="audio-player" preload="metadata"></audio>
+  <div class="player-cover-modal" id="player-cover-modal">
+    <button class="player-cover-close glass-btn" id="player-cover-close" aria-label="Close">✕</button>
+    <img id="player-cover-large" src="" alt="Album cover">
   </div>
 
   <!-- Surprise (hidden) -->
